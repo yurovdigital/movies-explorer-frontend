@@ -6,7 +6,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 768px;
+  max-width: calc(320px - 28px);
   padding: 18px 14px 18px 14px;
   margin: 0 auto;
 }
@@ -66,5 +66,27 @@
 }
 
 /* 768 px */
+@media screen and (min-width: 768px) {
+  .header__wrapper {
+    max-width: calc(768px - 60px);
+  }
+
+  .header__link {
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .header__login-button {
+    font-size: 12px;
+    line-height: 16px;
+    width: 76px;
+    height: 32px;
+  }
+}
 
 /* 1280 px */
+@media screen and (min-width: 1280px) {
+  .header__wrapper {
+    max-width: calc(1280px - 140px);
+  }
+}

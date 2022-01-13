@@ -1,8 +1,7 @@
 .about-project {
-  margin: 0;
-  padding: 0;
+  margin: 0 auto;
   background-color: #202020;
-  padding: 70px 18px 70px 18px;
+  padding: 70px 0px 70px 0px;
 }
 
 .about-project__title {
@@ -15,23 +14,29 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
-  margin: 0 auto;
   border-bottom: 1px solid #dadada;
   padding: 0 0 28px 0;
+  margin: 0;
 }
 
 .about-project__wrapper {
+  margin: 0 auto;
+  max-width: calc(320px - (2 * 18px));
+}
+
+.about-project__content-wrapper {
   display: flex;
   flex-direction: column;
-  margin: 60px auto 60px;
 }
 
 .about-project__content {
-  margin: 0 auto 56px;
+  display: flex;
+  flex-direction: column;
+  margin: 60px auto 56px;
 }
 
 .about-project__content:last-of-type {
-  margin: 0 auto 0;
+  margin-top: 0;
 }
 
 .about-project__subtitle {
@@ -110,4 +115,84 @@
   line-height: 13px;
   margin: 0;
   padding: 10px 0 0 0;
+}
+
+/* 768 */
+@media screen and (min-width: 768px) {
+  .about-project {
+    padding: 90px 0px 90px 0px;
+  }
+
+  .about-project__wrapper {
+    max-width: calc(768px - (2 * 50px));
+  }
+
+  .about-project__title {
+    font-size: 22px;
+    line-height: 27px;
+  }
+
+  .about-project__content-wrapper {
+    flex-direction: row;
+    gap: 30px;
+    margin: 70px auto 93px;
+  }
+
+  .about-project__content {
+    margin: 0;
+  }
+
+  .about-project__subtitle {
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  .about-project__subtitle {
+    margin: 0 0 22px 0;
+  }
+
+  .about-project__text {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .about-project__bar {
+    grid-template-columns: 140px 528px;
+  }
+
+  .about-project__bar-item {
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  .about-project__bar-caption {
+    font-size: 14px;
+    line-height: 17px;
+    padding: 14px 0 0 0;
+  }
+}
+
+/* 1280 */
+@media screen and (min-width: 1280px) {
+  .about-project {
+    padding: 110px 0 110px 0;
+  }
+
+  .about-project__wrapper {
+    max-width: calc(1280px - (2 * 70px));
+  }
+
+  .about-project__content-wrapper {
+    gap: 40px;
+    margin: 70px auto 110px;
+  }
+
+  .about-project__text {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .about-project__bar {
+    grid-template-columns: 228px 912px;
+  }
 }

@@ -3,27 +3,29 @@ import './AboutProject.css'
 
 function AboutProject() {
   return (
-    <section className="about-project">
-      <h3 className="about-project__title">О проекте</h3>
+    <section className="about-project" id="about-project">
       <div className="about-project__wrapper">
-        <aticle className="about-project__content">
-          <h4 className="about-project__subtitle">
-            Дипломный проект включал 5 этапов
-          </h4>
-          <p className="about-project__text">
-            Составление плана, работу над бэкендом, вёрстку, добавление
-            функциональности и финальные доработки.
-          </p>
-        </aticle>
-        <aticle className="about-project__content">
-          <h4 className="about-project__subtitle">
-            На выполнение диплома ушло 5 недель
-          </h4>
-          <p className="about-project__text">
-            У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было
-            соблюдать, чтобы успешно защититься.
-          </p>
-        </aticle>
+        <h3 className="about-project__title">О проекте</h3>
+        <div className="about-project__content-wrapper">
+          <aticle className="about-project__content">
+            <h4 className="about-project__subtitle">
+              Дипломный проект включал 5 этапов
+            </h4>
+            <p className="about-project__text">
+              Составление плана, работу над бэкендом, вёрстку, добавление
+              функциональности и финальные доработки.
+            </p>
+          </aticle>
+          <aticle className="about-project__content">
+            <h4 className="about-project__subtitle">
+              На выполнение диплома ушло 5 недель
+            </h4>
+            <p className="about-project__text">
+              У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было
+              соблюдать, чтобы успешно защититься.
+            </p>
+          </aticle>
+        </div>
       </div>
       <div className="about-project__bar">
         <p className="about-project__bar-item about-project__bar-item_backrgound_green">
