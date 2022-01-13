@@ -1,0 +1,113 @@
+.about-project {
+  margin: 0;
+  padding: 0;
+  background-color: #202020;
+  padding: 70px 18px 70px 18px;
+}
+
+.about-project__title {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  margin: 0 auto;
+  border-bottom: 1px solid #dadada;
+  padding: 0 0 28px 0;
+}
+
+.about-project__wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 60px auto 60px;
+}
+
+.about-project__content {
+  margin: 0 auto 56px;
+}
+
+.about-project__content:last-of-type {
+  margin: 0 auto 0;
+}
+
+.about-project__subtitle {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  margin: 0 0 16px 0;
+  padding: 0;
+}
+
+.about-project__text {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 16px;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+/* BAR */
+.about-project__bar {
+  display: grid;
+  grid-template-columns: 100px 184px;
+  grid-template-rows: min-content min-content;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-project__bar-item {
+  background-color: #303030;
+  height: 35px;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 13px;
+  text-align: center;
+  color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-project__bar-item_backrgound_green {
+  background-color: #3ddc84;
+}
+
+.about-ptoject__bar-item_text-color_white {
+  color: #fff;
+}
+
+.about-project__bar-caption {
+  color: #a0a0a0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 13px;
+  margin: 0;
+  padding: 10px 0 0 0;
+}

@@ -1,0 +1,62 @@
+.promo {
+  background-color: #073042;
+  padding: 0;
+  margin: 0 auto;
+  position: relative;
+}
+
+.promo__image {
+  background-image: url(../../images/landing-logo.svg);
+  background-repeat: no-repeat;
+  width: 248px;
+  height: 248px;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  margin: 142px 36px 180px 36px;
+  z-index: 0;
+}
+
+.promo__title {
+  margin: 0 auto;
+  padding: 207px 0px 246px 0px;
+  max-width: calc(100% - 20px);
+  font-style: normal;
+  font-weight: normal;
+  font-size: 31px;
+  line-height: 39px;
+  text-align: center;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  z-index: 1;
+}
+
+.promo__wrapper {
+  padding: 53px 25px 53px 25px;
+  background-color: #272727;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.promo__link {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  text-decoration: underline;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 16px;
+  color: #fff;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.promo__link:hover {
+  opacity: 0.7;
+}
