@@ -1,4 +1,5 @@
 import React from 'react'
+import NavTab from '../NavTab/NavTab'
 import './Promo.css'
 
 function Promo() {
@@ -9,17 +10,7 @@ function Promo() {
           Учебный проект студента факультета Веб-разработки.
         </h1>
       </div>
-      <div className="promo__links-wrapper">
-        <a className="promo__link" href="#about-project">
-          О проекте
-        </a>
-        <a className="promo__link" href="#techs">
-          Технологии
-        </a>
-        <a className="promo__link" href="#about-me">
-          Студент
-        </a>
-      </div>
+      <NavTab />
     </section>
   )
 }
