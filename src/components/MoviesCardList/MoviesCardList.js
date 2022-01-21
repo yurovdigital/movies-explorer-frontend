@@ -11,6 +11,10 @@ function MoviesCardList({ movies = [] }) {
             <MoviesCard movie={movie} />
           ))}
         </ul>
+        {/* TODO: Доделать функционал при большем кол-ве фильмов! */}
+        <button className="movies__button_disabled" type="button">
+          Еще
+        </button>
       </div>
     </section>
   )
