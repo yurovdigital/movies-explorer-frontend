@@ -1,0 +1,46 @@
+.navtab__items-wrapper {
+  padding: 25px 0 25px 0;
+  background-color: #272727;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+}
+
+.navtab__item {
+  margin: 0 24px 0 0;
+}
+
+.navtab__link {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  text-decoration: underline;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 16px;
+  color: #fff;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.navtab__item:last-child {
+  margin: 0;
+}
+
+.navtab__link:hover {
+  opacity: 0.7;
+}
+
+/* 768 */
+@media screen and (min-width: 768px) {
+  .navtab__item {
+    margin: 0 40px 0 0;
+  }
+
+  .navtab__link {
+    font-size: 13px;
+    line-height: 16px;
+  }
+}

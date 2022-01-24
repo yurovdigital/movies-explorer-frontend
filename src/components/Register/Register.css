@@ -1,0 +1,212 @@
+.register {
+  background-color: #202020;
+  height: 100vh;
+}
+
+.register__wrapper {
+  max-width: calc(320px - (2 * 30px));
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.register__logo {
+  width: 38px;
+  height: 38px;
+  margin: 56px 0 50px 0;
+  padding: 0;
+  display: block;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.register__logo:hover {
+  opacity: 0.7;
+}
+
+.register__title {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  color: #fff;
+  margin: 0 auto 80px;
+}
+
+.register__form {
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.register__inputs-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.register__label {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+  color: #8b8b8b;
+  margin: 10px 0 10px 0;
+}
+
+.register__label:first-of-type {
+  margin: 0 0 10px 0;
+}
+
+.register__input {
+  background-color: #2f2f2f;
+  border-radius: 8px;
+  border: none;
+  height: 46px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  color: #fff;
+  outline: none;
+}
+
+.register__input:focus {
+  outline: 1px solid #8b8b8b;
+}
+
+.register__input-error {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+  color: #ee3465;
+  margin: 10px 0 0 0;
+  height: 15px;
+  visibility: hidden;
+}
+
+.register__input-error_active {
+  visibility: visible;
+}
+
+.register__button {
+  background-color: #4285f4;
+  border-radius: 3px;
+  border: none;
+  width: 100%;
+  height: 45px;
+  margin: 267px 0 0 0;
+  transition: opacity 0.2s ease-in-out;
+  cursor: pointer;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.register__button:hover {
+  opacity: 0.7;
+}
+
+.register__button_disabled {
+  background-color: transparent;
+  border: 1px solid #8b8b8b;
+  cursor: inherit;
+  opacity: 0.7;
+}
+
+.register__text {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  color: #8b8b8b;
+  margin: 14px auto 0;
+}
+
+.register__link {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: #4285f4;
+  margin: 0 0 0 7px;
+  transition: opacity 0.2s ease-in-out;
+  text-decoration: none;
+}
+
+.register__link:hover {
+  opacity: 0.7;
+}
+
+/* 768 */
+@media screen and (min-width: 768px) {
+  .register__wrapper {
+    max-width: calc(768px - (2 * 186px));
+    align-items: baseline;
+  }
+
+  .register__logo {
+    margin: 232px 0 40px 0;
+    align-self: flex-start;
+  }
+
+  .register__title {
+    margin: 0 0 40px 0;
+  }
+
+  .register__button {
+    font-size: 14px;
+    line-height: 17px;
+    margin: 179px 0 0 0;
+  }
+
+  .register__text {
+    font-size: 14px;
+    line-height: 17px;
+    margin: 16px auto 0;
+  }
+
+  .register__link {
+    font-size: 14px;
+    line-height: 17px;
+    margin: 0 0 0 6px;
+  }
+}
+
+/* 1280 */
+@media screen and (min-width: 1280px) {
+  .register_wrapper {
+    max-width: 1280px;
+  }
+
+  .register__logo {
+    margin: 70px 0 40px 0;
+  }
+}
