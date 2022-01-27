@@ -4,7 +4,7 @@ import { useFormWithValidation } from '../../Hooks/useFormValidation'
 import logo from '../../images/logo.svg'
 import './Register.css'
 
-function Register({ onRegister }) {
+function Register({ onRegister, message }) {
   const { values, handleChange, resetForm, errors, isValid } =
     useFormWithValidation({})
 
@@ -95,6 +95,7 @@ function Register({ onRegister }) {
               {errors.password}
             </span>
           </div>
+          <p className="register__message">{message}</p>
           <button
             type="submit"
             className={`register__button ${

@@ -8,7 +8,10 @@ function MoviesCardList({ movies = [] }) {
       <div className="movies__wrapper">
         <ul className="movies__list">
           {movies.map((movie) => (
-            <MoviesCard movie={movie} />
+            <MoviesCard
+              movie={movie}
+              key={movie.id ? movie.id : movie.movieId}
+            />
           ))}
         </ul>
         {/* TODO: Доделать функционал при большем кол-ве фильмов! */}

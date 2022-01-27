@@ -76,8 +76,40 @@
   width: 80%;
 }
 
+.profile__input-error {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+  color: #ee3465;
+  margin: 10px 0 0 0;
+  height: 15px;
+  visibility: hidden;
+}
+
+.profile__input-error_active {
+  visibility: visible;
+}
+
 .profile__input:focus {
   outline: 1px solid #8b8b8b;
+}
+
+.profile__message {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  color: #ee3465;
+  margin: 0 auto;
+  padding: 0 0 20px 0;
 }
 
 .profile__button-wrapper {
@@ -100,6 +132,11 @@
   color: #fff;
   transition: opacity 0.2s ease-in-out;
   cursor: pointer;
+}
+
+.profile__button_disabled {
+  cursor: inherit;
+  opacity: 0.5;
 }
 
 .profile__button:hover {

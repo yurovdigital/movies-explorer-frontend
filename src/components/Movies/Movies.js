@@ -6,13 +6,13 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList'
 import Footer from '../Footer/Footer'
 import './Movies.css'
 
-function Movies({ movies = [], isLoggedIn, isLoading }) {
+function Movies({ loggedIn, isLoading, onSubmit }) {
   return (
     <>
-      <Header isLoggedIn={isLoggedIn} />
-      <SearchForm />
+      <Header loggedIn={loggedIn} />
+      <SearchForm onSubmit={onSubmit} />
       {isLoading && <Preloader />}
-      {!isLoading && <MoviesCardList movies={movies} isLoading={isLoading} />}
+      {!isLoading && <MoviesCardList isLoading={isLoading} />}
       <Footer />
     </>
   )

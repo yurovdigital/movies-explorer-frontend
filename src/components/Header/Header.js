@@ -4,7 +4,7 @@ import logo from '../../images/logo.svg'
 import './Header.css'
 import Navigation from '../Navigation/Navigation'
 
-function Header({ isLoggedIn }) {
+function Header({ loggedIn }) {
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = React.useState(false)
 
   function toggleBurgerMenu() {
@@ -12,7 +12,7 @@ function Header({ isLoggedIn }) {
   }
 
   return (
-    <header className={`header ${!isLoggedIn ? 'header_type_main-page' : ''}`}>
+    <header className={`header ${!loggedIn ? 'header_type_main-page' : ''}`}>
       <div className="header__wrapper">
         <Link to="/">
           <img
@@ -21,7 +21,7 @@ function Header({ isLoggedIn }) {
             alt="Логотип Movies Explorer"
           />
         </Link>
-        {isLoggedIn ? (
+        {loggedIn ? (
           <Navigation
             isBurgerMenuOpen={isBurgerMenuOpen}
             toggleBurgerMenu={toggleBurgerMenu}

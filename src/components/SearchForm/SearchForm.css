@@ -1,6 +1,7 @@
 .search-form {
   padding: 92px 0 50px 0;
   background-color: #202020;
+  width: 100%;
 }
 
 .search-form__wrapper {
