@@ -2,7 +2,7 @@ import React from 'react'
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox'
 import './SearchForm.css'
 
-function SearchForm({ onSubmit }) {
+function SearchForm({ onSubmit, checkBoxClick }) {
   const [movie, setMovie] = React.useState('')
 
   function handleChange(evt) {
@@ -10,7 +10,7 @@ function SearchForm({ onSubmit }) {
   }
 
   function handleSubmit(evt) {
-    evt.prevent.default()
+    evt.preventDefault()
 
     onSubmit(movie)
   }
@@ -36,7 +36,7 @@ function SearchForm({ onSubmit }) {
             Найти
           </button>
         </form>
-        <FilterCheckbox />
+        <FilterCheckbox checkBoxClick={checkBoxClick} />
       </div>
     </section>
   )

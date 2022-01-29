@@ -1,4 +1,4 @@
-import { MAIN_API } from './constants'
+import { MAIN_API, MOVIES_URL } from './constants'
 
 class Api {
   constructor(options) {
@@ -104,7 +104,19 @@ class Api {
         authorization: `Bearer ${token}`,
       },
       credentials: 'include',
-      body: JSON.stringify(movie),
+      body: JSON.stringify({
+        country: movie.country,
+        director: movie.director,
+        duration: movie.duration,
+        year: movie.year,
+        description: movie.description,
+        image: `${MOVIES_URL}${movie.image.url}`,
+        trailer: movie.trailerLink,
+        thumbnail: `${MOVIES_URL}${movie.image.formats.thumbnail.url}`,
+        movieId: movie.id,
+        nameRU: movie.nameRU,
+        nameEN: movie.nameEN,
+      }),
     }).then(this._handleResponse)
   }
 

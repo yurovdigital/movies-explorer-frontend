@@ -20,12 +20,15 @@ import api from '../../utils/MainApi'
 import moviesApi from '../../utils/MoviesApi'
 
 function App() {
-  // const [isLoading, setIsLoading] = React.useState(false)
+  const [isLoading, setIsLoading] = React.useState(false)
   const [loggedIn, setLoggedIn] = React.useState(false)
   const [message, setMessage] = React.useState('')
   const [currentUser, setCurrentUser] = React.useState({})
 
   // Фильмы
+  const [allMovies, setAllMovies] = React.useState(
+    JSON.parse(localStorage.getItem('loadedFilms')) || []
+  )
   const [movies, setMovies] = React.useState([])
   const [savedMovies, setSavedMovies] = React.useState([])
 
@@ -37,20 +40,31 @@ function App() {
       api
         .getUser()
         .then((user) => {
-          setCurrentUser(user.data)
+          setCurrentUser(user)
         })
         .catch((error) => {
           console.error(error)
         })
+      moviesApi
+        .getMovies()
+        .then((data) => {
+          setAllMovies(data)
+          localStorage.setItem('loadedMovies', JSON.stringify(data))
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
   }, [loggedIn])
 
+  // Загрузка сохраненных фильмов
   React.useEffect(() => {
     api
       .getMovies()
       .then((res) => {
-        setSavedMovies(res.filter((movie) => movie.owner === currentUser._id))
-        localStorage.setItem('savedMovies', JSON.stringify(res))
+        const savedArray = res.map((item) => item)
+        setSavedMovies(savedArray)
+        localStorage.setItem('savedMovies', JSON.stringify(savedArray))
       })
       .catch((error) => {
         console.error(error)
@@ -129,7 +143,7 @@ function App() {
         setMessage('Произошла ошибка, попробуйте перезагрузить страницу.')
       })
   }
-
+  // Поиск фильмов
   function searchMovies(movie, name) {
     return movie.filter(
       (m) => m.nameRU.toLowerCase().indexOf(name.toLowerCase()) !== -1
@@ -137,29 +151,61 @@ function App() {
   }
 
   function handleSearchMovies(name) {
+    setIsLoading(true)
+    if (allMovies.length) {
+      const newMovies = searchMovies(allMovies, name)
+      setMovies(newMovies)
+      setIsLoading(false)
+      return
+    }
+
     moviesApi
       .getMovies()
       .then((res) => {
+        localStorage.setItem('loadedFilms', JSON.stringify(res))
         const newMovies = searchMovies(res, name)
+        setAllMovies(res)
         setMovies(newMovies)
       })
-      .catch((error) => {
-        console.error(error)
+      .catch((err) => {
+        console.log(err)
+      })
+      .finally(() => {
+        setIsLoading(false)
       })
   }
 
-  // function handleSearchSavedMovies(name) {
-  //   const searchSavedMovies = JSON.parse(localStorage.getItem('savedMovies'))
-  //   const foundSavedMovies = searchSavedMovies.filter((c) =>
-  //     c.nameRU.toLowerCase().includes(name.toLowerCase())
-  //   )
-  //   if (foundSavedMovies.length === 0) {
-  //     setMessage('Ничего не найдено.')
-  //   } else {
-  //     setSavedMovies(foundSavedMovies)
-  //     setMessage('')
-  //   }
-  // }
+  // Сохранение фильма
+  function handleSaveMovie(movie) {
+    setIsLoading(true)
+    api
+      .saveMovie(movie)
+      .then((item) => {
+        setSavedMovies([item, ...savedMovies])
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
+  }
+
+  // Удаление фильма из сохраненных
+  function handleMovieDelete(movie) {
+    const savedMovie = savedMovies.find((item) => item._id === movie._id)
+    api
+      .deleteMovie(savedMovie._id)
+      .then(() => {
+        const newMoviesList = savedMovies.filter(
+          (item) => savedMovie.id !== item.id
+        )
+        setSavedMovies(newMoviesList)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
 
   return (
     <div className="page">
@@ -184,10 +230,13 @@ function App() {
           <ProtectedRoute
             exact
             path="/movies"
+            isLoading={isLoading}
             loggedIn={loggedIn}
             component={Movies}
             movies={movies}
+            savedMovies={savedMovies}
             onSubmit={handleSearchMovies}
+            onSave={handleSaveMovie}
           />
           {/* Сохраненные фильмы */}
           <ProtectedRoute
@@ -195,6 +244,8 @@ function App() {
             path="/saved-movies"
             loggedIn={loggedIn}
             component={SavedMovies}
+            movies={savedMovies}
+            onDelete={handleMovieDelete}
             savedMovies={savedMovies}
           />
           <Route exact path="/signup">
