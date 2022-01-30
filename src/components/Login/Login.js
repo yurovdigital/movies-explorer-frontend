@@ -4,7 +4,7 @@ import { useFormWithValidation } from '../../Hooks/useFormValidation'
 import logo from '../../images/logo.svg'
 import './Login.css'
 
-function Login({ onLogin }) {
+function Login({ onLogin, message }) {
   const { values, handleChange, resetForm, errors, isValid } =
     useFormWithValidation({})
 
@@ -73,6 +73,7 @@ function Login({ onLogin }) {
               {errors.password}
             </span>
           </div>
+          <p className="login__message">{message}</p>
           <button
             className={`login__button ${!isValid && 'login__button_disabled'}`}
             type="submit"

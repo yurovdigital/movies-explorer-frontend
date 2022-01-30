@@ -38,9 +38,7 @@ class Api {
     }).then(this._handleResponse)
   }
 
-  checkToken() {
-    const token = localStorage.getItem('token')
-
+  checkToken(token) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'GET',
       headers: {
@@ -51,9 +49,7 @@ class Api {
     }).then(this._handleResponse)
   }
 
-  getUser() {
-    const token = localStorage.getItem('token')
-
+  getUser(token) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'GET',
       headers: {
@@ -81,9 +77,7 @@ class Api {
     }).then(this._handleResponse)
   }
 
-  getMovies() {
-    const token = localStorage.getItem('token')
-
+  getMovies(token) {
     return fetch(`${this._baseUrl}/movies`, {
       method: 'GET',
       headers: {

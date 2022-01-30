@@ -8,7 +8,7 @@ function Profile({ loggedIn, onUpdateUser, onSignOut, message }) {
   const user = React.useContext(CurrentUserContext)
 
   const { values, handleChange, resetForm, errors, isValid } =
-    useFormWithValidation({})
+    useFormWithValidation()
 
   const { name, email } = values
 
