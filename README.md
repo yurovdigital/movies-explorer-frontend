@@ -1,28 +1,21 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Movies Explorer
+##### Дипломный проект курса "Веб-разработчик" от Яндекс.Практикум
+---
+##### Проект доступен по [ссылке](https://movies-yd.nomoredomains.rocks/)
+---
 
-## Available Scripts
+#### Технологии
+![HTML5](https://img.shields.io/badge/-HTML5-141130?style=for-the-badge&logo=HTML5&logoColor=FF0000)
+![CSS3](https://img.shields.io/badge/-CSS3-141130?style=for-the-badge&logo=CSS3&logoColor=009900)
+![JavaScript](https://img.shields.io/badge/-JavaScript-141130?style=for-the-badge&logo=JavaScript&logoColor=yellow)
+![React](https://img.shields.io/badge/-React-141130?style=for-the-badge&logo=React)
+![Node.js](https://img.shields.io/badge/-Node.js-141130?style=for-the-badge&logo=Node.js)
+![Express](https://img.shields.io/badge/-Express-141130?style=for-the-badge&logo=Express)
+![MongoDB](https://img.shields.io/badge/-MongoDB-141130?style=for-the-badge&logo=MongoDB)
+![API](https://img.shields.io/badge/-API-141130?style=for-the-badge)
+---
 
-In the project directory, you can run:
+#### Скрипты
+`npm run start` - запускает проект в режиме разработки по адресу http:/localhost:3000
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-Ссылка на проект - https://movies-yd.nomoredomains.rocks/
+`npm run build` - сборка проекта в папке build
