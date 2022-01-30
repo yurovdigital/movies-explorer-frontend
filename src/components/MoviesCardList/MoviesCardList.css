@@ -43,6 +43,15 @@
   line-height: 15px;
   color: #fff;
   cursor: pointer;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.movies__button:hover {
+  opacity: 0.7;
+}
+
+.movies__button_display_none {
+  display: none;
 }
 
 /* 768 */

@@ -32,7 +32,6 @@ function Movies({
       {isLoading && <Preloader />}
       {!isLoading && (
         <MoviesCardList
-          isLoading={isLoading}
           movies={checkBoxActive ? filterShortMovies(movies) : movies}
           onSave={onSave}
           onDelete={onDelete}

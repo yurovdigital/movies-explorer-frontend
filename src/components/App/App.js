@@ -30,7 +30,9 @@ function App() {
     JSON.parse(localStorage.getItem('loadedFilms')) || []
   )
   const [movies, setMovies] = React.useState([])
-  const [savedMovies, setSavedMovies] = React.useState([])
+  const [savedMovies, setSavedMovies] = React.useState(
+    JSON.parse(localStorage.getItem('savedMovies') || [])
+  )
 
   const history = useHistory()
 
@@ -77,6 +79,7 @@ function App() {
 
   // Загрузка сохраненных фильмов
   React.useEffect(() => {
+    setIsLoading(true)
     api
       .getMovies()
       .then((res) => {
@@ -87,12 +90,13 @@ function App() {
             id: item.movieId,
           }))
         )
-        // eslint-disable-next-line no-debugger
-        debugger
         localStorage.setItem('savedMovies', JSON.stringify(res))
       })
       .catch((error) => {
         console.error(error)
+      })
+      .finally(() => {
+        setIsLoading(false)
       })
   }, [currentUser])
 
@@ -182,6 +186,31 @@ function App() {
       })
   }
 
+  // Поиск сохраненных фильмов
+  function handleSearchSavedMovies(name) {
+    setIsLoading(true)
+    if (savedMovies.length) {
+      const newSavedMovies = searchMovies(savedMovies, name)
+      setSavedMovies(newSavedMovies)
+      setIsLoading(false)
+      return
+    }
+
+    api
+      .getMovies()
+      .then((res) => {
+        localStorage.setItem('savedMovies', JSON.stringify(res))
+        const newSavedMovies = searchMovies(savedMovies, name)
+        setSavedMovies(newSavedMovies)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
+  }
+
   // Сохранение фильма
   function handleSaveMovie(movie) {
     setIsLoading(true)
@@ -253,6 +282,7 @@ function App() {
             loggedIn={loggedIn}
             component={SavedMovies}
             movies={savedMovies}
+            onSubmit={handleSearchSavedMovies}
             onDelete={handleDeleteMovie}
             savedMovies={savedMovies}
           />

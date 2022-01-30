@@ -1,4 +1,5 @@
 import React from 'react'
+import { useLocation } from 'react-router-dom'
 import './MoviesCardList.css'
 import MoviesCard from '../MoviesCard/MoviesCard'
 
@@ -6,6 +7,8 @@ function MoviesCardList({ movies, message, onSave, onDelete, savedMovies }) {
   const [currentCards, setCurrentCards] = React.useState(0)
   const [addCards, setAddCards] = React.useState(3)
   const [moviesToShow, setMoviesToShow] = React.useState([])
+
+  const location = useLocation()
 
   const getCards = (windowSize) => {
     if (windowSize > 1280) {
@@ -72,15 +75,29 @@ function MoviesCardList({ movies, message, onSave, onDelete, savedMovies }) {
                 />
               ))}
             </ul>
-            <button
-              className={`movies__button ${
-                currentCards > movies.length && 'movies__button_disabled'
-              }`}
-              type="button"
-              onClick={renderMovies}
-            >
-              Еще
-            </button>
+            {location.pathname === '/movies' && (
+              <button
+                className={`movies__button ${
+                  currentCards > movies.length && 'movies__button_disabled'
+                } ${
+                  currentCards === movies.length &&
+                  'movies__button_display_none'
+                }`}
+                type="button"
+                onClick={renderMovies}
+              >
+                Еще
+              </button>
+            )}
+            {location.pathname === '/saved-movies' && (
+              <button
+                className="movies__button_display_none"
+                type="button"
+                onClick={renderMovies}
+              >
+                Еще
+              </button>
+            )}
           </>
         ) : (
           <p className="movies__text">{message}</p>
