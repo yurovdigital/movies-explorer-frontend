@@ -37,51 +37,52 @@ function App() {
   // Проверка токена
   React.useEffect(() => {
     const token = localStorage.getItem('token')
+    if (loggedIn) {
+      api
+        .checkToken(token)
+        .then(() => {
+          setLoggedIn(true)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
 
-    api
-      .checkToken(token)
-      .then(() => {
-        setLoggedIn(true)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+      api
+        .getUser(token)
+        .then((user) => {
+          setCurrentUser(user)
+        })
+        .catch((error) => {
+          console.error(error)
+        })
 
-    api
-      .getUser(token)
-      .then((user) => {
-        setCurrentUser(user)
-      })
-      .catch((error) => {
-        console.error(error)
-      })
+      api
+        .getMovies(token)
+        .then((res) => {
+          setSavedMovies(
+            res.map((item) => ({
+              ...item,
+              key: item._id,
+              id: item.movieId,
+            }))
+          )
+          localStorage.setItem('savedMovies', JSON.stringify(res))
+        })
+        .catch((err) => {
+          console.error(err)
+        })
 
-    api
-      .getMovies(token)
-      .then((res) => {
-        setSavedMovies(
-          res.map((item) => ({
-            ...item,
-            key: item._id,
-            id: item.movieId,
-          }))
-        )
-        localStorage.setItem('savedMovies', JSON.stringify(res))
-      })
-      .catch((err) => {
-        console.error(err)
-      })
-
-    moviesApi
-      .getMovies()
-      .then((data) => {
-        setAllMovies(data)
-        localStorage.setItem('loadedMovies', JSON.stringify(data))
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  })
+      moviesApi
+        .getMovies()
+        .then((data) => {
+          setAllMovies(data)
+          localStorage.setItem('loadedMovies', JSON.stringify(data))
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
+  }, [loggedIn])
 
   // Загрузка данных
   // React.useEffect(() => {
@@ -191,7 +192,6 @@ function App() {
     setSavedMovies([])
     setCurrentUser({})
     setLoggedIn(false)
-    setCurrentUser({})
     history.push('/')
   }
 
