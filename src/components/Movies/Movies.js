@@ -13,6 +13,7 @@ function Movies({
   onSubmit,
   movies,
   onSave,
+  onDelete,
   savedMovies,
 }) {
   const [checkBoxActive, setCheckBoxActive] = React.useState(false)
@@ -34,6 +35,7 @@ function Movies({
           isLoading={isLoading}
           movies={checkBoxActive ? filterShortMovies(movies) : movies}
           onSave={onSave}
+          onDelete={onDelete}
           savedMovies={savedMovies}
         />
       )}

@@ -41,7 +41,7 @@ function MoviesCardList({ movies, message, onSave, onDelete, savedMovies }) {
   }, [resize])
 
   function checkSavedMovies(movie) {
-    return savedMovies.find((item) => item.id === movie.id)
+    return savedMovies.some((item) => item.id === movie.id)
   }
 
   React.useEffect(() => {

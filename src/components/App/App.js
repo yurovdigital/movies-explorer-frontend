@@ -34,6 +34,24 @@ function App() {
 
   const history = useHistory()
 
+  // Проверка токена
+  const checkToken = React.useCallback(() => {
+    api
+      .checkToken()
+      .then((data) => {
+        setLoggedIn(true)
+        setCurrentUser(data)
+        history.push('/movies')
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [history])
+
+  React.useEffect(() => {
+    checkToken()
+  }, [checkToken])
+
   // Загрузка данных
   React.useEffect(() => {
     if (loggedIn) {
@@ -62,32 +80,21 @@ function App() {
     api
       .getMovies()
       .then((res) => {
-        const savedArray = res.map((item) => item)
-        setSavedMovies(savedArray)
-        localStorage.setItem('savedMovies', JSON.stringify(savedArray))
+        setSavedMovies(
+          res.map((item) => ({
+            ...item,
+            key: item._id,
+            id: item.movieId,
+          }))
+        )
+        // eslint-disable-next-line no-debugger
+        debugger
+        localStorage.setItem('savedMovies', JSON.stringify(res))
       })
       .catch((error) => {
         console.error(error)
       })
   }, [currentUser])
-
-  // Проверка токена
-  const checkToken = React.useCallback(() => {
-    api
-      .checkToken()
-      .then((data) => {
-        setLoggedIn(true)
-        setCurrentUser(data)
-        history.push('/movies')
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }, [history])
-
-  React.useEffect(() => {
-    checkToken()
-  }, [checkToken])
 
   // Регистрация пользователя
   function handleRegister({ name, email, password }) {
@@ -181,7 +188,7 @@ function App() {
     api
       .saveMovie(movie)
       .then((item) => {
-        setSavedMovies([item, ...savedMovies])
+        setSavedMovies([item.movie, ...savedMovies])
       })
       .catch((err) => {
         console.log(err)
@@ -192,13 +199,13 @@ function App() {
   }
 
   // Удаление фильма из сохраненных
-  function handleMovieDelete(movie) {
-    const savedMovie = savedMovies.find((item) => item._id === movie._id)
+  function handleDeleteMovie(movie) {
+    const savedMovie = savedMovies.find((item) => item.id === movie.id)
     api
       .deleteMovie(savedMovie._id)
       .then(() => {
         const newMoviesList = savedMovies.filter(
-          (item) => savedMovie.id !== item.id
+          (item) => savedMovie._id !== item._id
         )
         setSavedMovies(newMoviesList)
       })
@@ -237,6 +244,7 @@ function App() {
             savedMovies={savedMovies}
             onSubmit={handleSearchMovies}
             onSave={handleSaveMovie}
+            onDelete={handleDeleteMovie}
           />
           {/* Сохраненные фильмы */}
           <ProtectedRoute
@@ -245,7 +253,7 @@ function App() {
             loggedIn={loggedIn}
             component={SavedMovies}
             movies={savedMovies}
-            onDelete={handleMovieDelete}
+            onDelete={handleDeleteMovie}
             savedMovies={savedMovies}
           />
           <Route exact path="/signup">

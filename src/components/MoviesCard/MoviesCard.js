@@ -4,10 +4,8 @@ import './MoviesCard.css'
 
 import { MOVIES_URL } from '../../utils/constants'
 
-function MoviesCard({ movie, onSave, onDelete }) {
+function MoviesCard({ movie, onSave, onDelete, savedMovies }) {
   const location = useLocation()
-
-  const isSaved = location.pathname === '/saved-movies'
 
   function handleSaveMovie() {
     onSave(movie)
@@ -24,23 +22,37 @@ function MoviesCard({ movie, onSave, onDelete }) {
         <p className="movies__duration">{movie.duration} минут</p>
       </div>
       {location.pathname === '/movies' && (
-        <img
-          src={`${MOVIES_URL}${movie.image.url}`}
-          alt={movie.nameRU}
-          className="movie__image"
-        />
+        <a
+          href={movie.trailerLink}
+          className="movies__trailer-link"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <img
+            src={`${MOVIES_URL}${movie.image.url}`}
+            alt={movie.nameRU}
+            className="movies__image"
+          />
+        </a>
       )}
       {location.pathname === '/saved-movies' && (
-        <img src={movie.image} alt={movie.nameRU} className="movie__image" />
+        <a
+          href={movie.trailer}
+          className="movies__trailer-link"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <img src={movie.image} alt={movie.nameRU} className="movies__image" />
+        </a>
       )}
       {location.pathname === '/movies' && (
         <button
           className={`movies__save-button ${
-            isSaved && 'movies__save-button_active'
+            savedMovies && 'movies__save-button_active'
           }`}
           type="button"
           aria-label="Сохранить"
-          onClick={handleSaveMovie}
+          onClick={savedMovies ? handleDeleteMovie : handleSaveMovie}
         />
       )}
       {location.pathname === '/saved-movies' && (
