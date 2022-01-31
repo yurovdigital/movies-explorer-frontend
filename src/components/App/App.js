@@ -35,22 +35,20 @@ function App() {
   const history = useHistory()
 
   // Проверка токена
-  function checkToken() {
-    const token = localStorage.getItem('token')
-    api
-      .checkToken(token)
-      .then(() => {
-        setLoggedIn(true)
-        history.push('/movies')
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }
-
   React.useEffect(() => {
-    checkToken()
-  }, [checkToken])
+    const token = localStorage.getItem('token')
+    if (token) {
+      api
+        .checkToken(token)
+        .then(() => {
+          setLoggedIn(true)
+          history.push('/movies')
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
+  }, [history])
 
   // Загрузка данных
   React.useEffect(() => {
@@ -93,70 +91,6 @@ function App() {
     }
   }, [loggedIn])
 
-  // Загрузка данных
-  // React.useEffect(() => {
-  //   if (loggedIn) {
-  //     api
-  //       .getUser()
-  //       .then((user) => {
-  //         setCurrentUser(user)
-  //       })
-  //       .catch((error) => {
-  //         console.error(error)
-  //       })
-  //     moviesApi
-  //       .getMovies()
-  //       .then((data) => {
-  //         setAllMovies(data)
-  //         localStorage.setItem('loadedMovies', JSON.stringify(data))
-  //       })
-  //       .catch((err) => {
-  //         console.log(err)
-  //       })
-  //     api
-  //       .getMovies()
-  //       .then((res) => {
-  //         setSavedMovies(
-  //           res.map((item) => ({
-  //             ...item,
-  //             key: item._id,
-  //             id: item.movieId,
-  //           }))
-  //         )
-  //         localStorage.setItem('savedMovies', JSON.stringify(res))
-  //       })
-  //       .catch((error) => {
-  //         console.error(error)
-  //       })
-  //       .finally(() => {
-  //         setIsLoading(false)
-  //       })
-  //   }
-  // }, [loggedIn])
-
-  // Загрузка сохраненных фильмов
-  // React.useEffect(() => {
-  //   setIsLoading(true)
-  //   api
-  //     .getMovies()
-  //     .then((res) => {
-  //       setSavedMovies(
-  //         res.map((item) => ({
-  //           ...item,
-  //           key: item._id,
-  //           id: item.movieId,
-  //         }))
-  //       )
-  //       localStorage.setItem('savedMovies', JSON.stringify(res))
-  //     })
-  //     .catch((error) => {
-  //       console.error(error)
-  //     })
-  //     .finally(() => {
-  //       setIsLoading(false)
-  //     })
-  // }, [currentUser])
-
   // Регистрация пользователя
   function handleRegister({ name, email, password }) {
     api
@@ -172,6 +106,9 @@ function App() {
         setMessage('Произошла ошибка, попробуйте перезагрузить страницу.')
         console.log(err)
       })
+      .finally(() => {
+        setMessage('')
+      })
   }
 
   // Логин пользователя
@@ -180,8 +117,8 @@ function App() {
       .login(email, password)
       .then((res) => {
         if (res.token) {
-          setLoggedIn(true)
           localStorage.setItem('token', res.token)
+          setLoggedIn(true)
           history.push('/movies')
           setMessage('Успешно')
         }
@@ -189,6 +126,9 @@ function App() {
       .catch((err) => {
         setMessage('Произошла ошибка, попробуйте перезагрузить страницу.')
         console.log(err)
+      })
+      .finally(() => {
+        setMessage('')
       })
   }
 
@@ -216,6 +156,9 @@ function App() {
       .catch((err) => {
         console.log(err)
         setMessage('Произошла ошибка, попробуйте перезагрузить страницу.')
+      })
+      .finally(() => {
+        setMessage('')
       })
   }
 
@@ -293,6 +236,7 @@ function App() {
 
   // Удаление фильма из сохраненных
   function handleDeleteMovie(movie) {
+    setIsLoading(true)
     const savedMovie = savedMovies.find((item) => item.id === movie.id)
     api
       .deleteMovie(savedMovie._id)
@@ -304,6 +248,9 @@ function App() {
       })
       .catch((err) => {
         console.log(err)
+      })
+      .finally(() => {
+        setIsLoading(false)
       })
   }
 
