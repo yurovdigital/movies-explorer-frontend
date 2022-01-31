@@ -18,6 +18,10 @@ function Profile({ loggedIn, onUpdateUser, onSignOut, message }) {
     resetForm()
   }
 
+  function handleFocus(evt) {
+    evt.target.select()
+  }
+
   React.useEffect(() => {
     if (user) {
       resetForm(user, {}, true)
@@ -42,6 +46,7 @@ function Profile({ loggedIn, onUpdateUser, onSignOut, message }) {
                 minLength="2"
                 maxLength="30"
                 onChange={handleChange}
+                onFocus={handleFocus}
                 required
               />
             </label>
@@ -61,6 +66,7 @@ function Profile({ loggedIn, onUpdateUser, onSignOut, message }) {
                 name="email"
                 value={email || user.email}
                 onChange={handleChange}
+                onFocus={handleFocus}
                 required
               />
             </label>

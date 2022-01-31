@@ -35,18 +35,27 @@ function App() {
   const history = useHistory()
 
   // Проверка токена
+  function checkToken() {
+    const token = localStorage.getItem('token')
+    api
+      .checkToken(token)
+      .then(() => {
+        setLoggedIn(true)
+        history.push('/movies')
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  React.useEffect(() => {
+    checkToken()
+  }, [checkToken])
+
+  // Загрузка данных
   React.useEffect(() => {
     const token = localStorage.getItem('token')
     if (loggedIn) {
-      api
-        .checkToken(token)
-        .then(() => {
-          setLoggedIn(true)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-
       api
         .getUser(token)
         .then((user) => {
@@ -188,6 +197,7 @@ function App() {
     localStorage.removeItem('token')
     localStorage.removeItem('loadedMovies')
     localStorage.removeItem('savedMovies')
+    setAllMovies([])
     setMovies([])
     setSavedMovies([])
     setCurrentUser({})
