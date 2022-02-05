@@ -3,6 +3,12 @@ import { useLocation } from 'react-router-dom'
 import './MoviesCardList.css'
 import MoviesCard from '../MoviesCard/MoviesCard'
 
+import {
+  MOBILE_WIDTH,
+  TABLET_WIDTH,
+  DESKTOP_WIDTH,
+} from '../../utils/constants'
+
 function MoviesCardList({ movies, message, onSave, onDelete, savedMovies }) {
   const [currentCards, setCurrentCards] = React.useState(0)
   const [addCards, setAddCards] = React.useState(3)
@@ -11,13 +17,13 @@ function MoviesCardList({ movies, message, onSave, onDelete, savedMovies }) {
   const location = useLocation()
 
   const getCards = (windowSize) => {
-    if (windowSize > 1280) {
+    if (windowSize > DESKTOP_WIDTH) {
       return { first: 12, extra: 3 }
     }
-    if (windowSize > 768 && windowSize <= 1280) {
+    if (windowSize > TABLET_WIDTH && windowSize <= DESKTOP_WIDTH) {
       return { first: 8, extra: 2 }
     }
-    if (windowSize >= 320 && windowSize <= 768) {
+    if (windowSize >= MOBILE_WIDTH && windowSize <= TABLET_WIDTH) {
       return { first: 6, extra: 2 }
     }
     return { first: 5, extra: 1 }
@@ -43,9 +49,9 @@ function MoviesCardList({ movies, message, onSave, onDelete, savedMovies }) {
     }
   }, [resize])
 
-  function checkSavedMovies(movie) {
-    return savedMovies.some((item) => item.id === movie.id)
-  }
+  // function checkSavedMovies(movie) {
+  //   return savedMovies.find((item) => item.id === movie.id)
+  // }
 
   React.useEffect(() => {
     const windowSize = window.innerWidth
@@ -70,7 +76,7 @@ function MoviesCardList({ movies, message, onSave, onDelete, savedMovies }) {
                   movie={movie}
                   onSave={onSave}
                   onDelete={onDelete}
-                  savedMovies={checkSavedMovies(movie)}
+                  savedMovies={savedMovies}
                   key={movie.id}
                 />
               ))}

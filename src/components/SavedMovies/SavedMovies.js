@@ -2,10 +2,19 @@ import React from 'react'
 
 import Header from '../Header/Header'
 import SearchForm from '../SearchForm/SearchForm'
+import Preloader from '../Preloader/Preloader'
 import MoviesCardList from '../MoviesCardList/MoviesCardList'
 import Footer from '../Footer/Footer'
 
-function SavedMovies({ movies, loggedIn, onSubmit, onDelete, savedMovies }) {
+function SavedMovies({
+  movies,
+  loggedIn,
+  isLoading,
+  onSubmit,
+  onDelete,
+  savedMovies,
+  searchKeyword,
+}) {
   const [checkBoxActive, setCheckBoxActive] = React.useState(false)
 
   const filterShortMovies = (filterMovies) =>
@@ -18,12 +27,19 @@ function SavedMovies({ movies, loggedIn, onSubmit, onDelete, savedMovies }) {
   return (
     <>
       <Header loggedIn={loggedIn} />
-      <SearchForm onSubmit={onSubmit} checkBoxClick={checkBoxClick} />
-      <MoviesCardList
-        movies={checkBoxActive ? filterShortMovies(movies) : movies}
-        onDelete={onDelete}
-        savedMovies={savedMovies}
+      <SearchForm
+        onSubmit={onSubmit}
+        checkBoxClick={checkBoxClick}
+        searchKeyword={searchKeyword}
       />
+      {isLoading && <Preloader />}
+      {!isLoading && (
+        <MoviesCardList
+          movies={checkBoxActive ? filterShortMovies(movies) : movies}
+          onDelete={onDelete}
+          savedMovies={savedMovies}
+        />
+      )}
       <Footer />
     </>
   )

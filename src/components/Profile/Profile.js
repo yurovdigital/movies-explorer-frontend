@@ -10,6 +10,8 @@ function Profile({ loggedIn, onUpdateUser, onSignOut, message }) {
   const { values, handleChange, resetForm, errors, isValid } =
     useFormWithValidation()
 
+  const [buttonDisabled, setButtonDisabled] = React.useState(false)
+
   const { name, email } = values
 
   function handleSubmit(evt) {
@@ -28,6 +30,14 @@ function Profile({ loggedIn, onUpdateUser, onSignOut, message }) {
     }
   }, [user, resetForm])
 
+  React.useEffect(() => {
+    if ((name !== user.name || email !== user.email) && isValid) {
+      setButtonDisabled(true)
+    } else {
+      setButtonDisabled(false)
+    }
+  }, [email, isValid, name, user.email, user.name])
+
   return (
     <>
       <Header loggedIn={loggedIn} />
@@ -42,7 +52,7 @@ function Profile({ loggedIn, onUpdateUser, onSignOut, message }) {
                 id="name"
                 type="text"
                 name="name"
-                value={name || user.name}
+                value={name || ''}
                 minLength="2"
                 maxLength="30"
                 onChange={handleChange}
@@ -64,9 +74,10 @@ function Profile({ loggedIn, onUpdateUser, onSignOut, message }) {
                 id="email"
                 type="email"
                 name="email"
-                value={email || user.email}
+                value={email || ''}
                 onChange={handleChange}
                 onFocus={handleFocus}
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                 required
               />
             </label>
@@ -81,15 +92,12 @@ function Profile({ loggedIn, onUpdateUser, onSignOut, message }) {
             <div className="profile__button-wrapper">
               <span className="profile__message">{message}</span>
               <button
-                className={`profile__button profile__button_type_submit
-                ${
-                  name === user.name &&
-                  email === user.email &&
-                  'profile__button_disabled'
-                } ${!isValid && 'profile__button_disabled'}
+                className={`profile__button profile__button_type_submit ${
+                  !buttonDisabled && 'profile__button_disabled'
+                }
                `}
                 type="submit"
-                disabled={!isValid}
+                disabled={!buttonDisabled}
               >
                 Редактировать
               </button>

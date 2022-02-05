@@ -7,6 +7,8 @@ import Footer from '../Footer/Footer'
 
 import './Movies.css'
 
+import { SHORT_MOVIE_DURATION } from '../../utils/constants'
+
 function Movies({
   loggedIn,
   isLoading,
@@ -15,20 +17,36 @@ function Movies({
   onSave,
   onDelete,
   savedMovies,
+  searchKeyword,
 }) {
   const [checkBoxActive, setCheckBoxActive] = React.useState(false)
-
-  const filterShortMovies = (filterMovies) =>
-    filterMovies.filter((m) => m.duration < 40)
+  const [isShort, setIsShort] = React.useState(false)
 
   function checkBoxClick() {
     setCheckBoxActive(!checkBoxActive)
+    localStorage.setItem('checkBox', !checkBoxActive)
   }
+
+  React.useEffect(() => {
+    const checkBoxLocal = localStorage.getItem('checkBox')
+    if (checkBoxLocal === 'true') {
+      setIsShort(isShort)
+      setCheckBoxActive(true)
+    }
+  }, [])
+
+  const filterShortMovies = (filterMovies) =>
+    filterMovies.filter((m) => m.duration < SHORT_MOVIE_DURATION)
 
   return (
     <>
       <Header loggedIn={loggedIn} />
-      <SearchForm onSubmit={onSubmit} checkBoxClick={checkBoxClick} />
+      <SearchForm
+        onSubmit={onSubmit}
+        checkBoxClick={checkBoxClick}
+        searchKeyword={searchKeyword}
+        isShort={checkBoxActive}
+      />
       {isLoading && <Preloader />}
       {!isLoading && (
         <MoviesCardList
@@ -36,6 +54,7 @@ function Movies({
           onSave={onSave}
           onDelete={onDelete}
           savedMovies={savedMovies}
+          checkBox={checkBoxClick}
         />
       )}
       <Footer />

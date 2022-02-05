@@ -7,8 +7,14 @@ import { MOVIES_URL } from '../../utils/constants'
 function MoviesCard({ movie, onSave, onDelete, savedMovies }) {
   const location = useLocation()
 
-  function handleSaveMovie() {
-    onSave(movie)
+  const isSaved = savedMovies.some((m) => m.movieId === movie.id)
+
+  function handleSaveClick() {
+    if (isSaved) {
+      onDelete(savedMovies.filter((m) => m.movieId === movie.id)[0])
+    } else {
+      onSave(movie)
+    }
   }
 
   function handleDeleteMovie() {
@@ -48,11 +54,11 @@ function MoviesCard({ movie, onSave, onDelete, savedMovies }) {
       {location.pathname === '/movies' && (
         <button
           className={`movies__save-button ${
-            savedMovies && 'movies__save-button_active'
+            isSaved && 'movies__save-button_active'
           }`}
           type="button"
           aria-label="Сохранить"
-          onClick={savedMovies ? handleDeleteMovie : handleSaveMovie}
+          onClick={handleSaveClick}
         />
       )}
       {location.pathname === '/saved-movies' && (
