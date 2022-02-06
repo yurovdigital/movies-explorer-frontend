@@ -27,7 +27,7 @@ function SearchForm({ onSubmit, checkBoxClick, searchKeyword, isShort }) {
   return (
     <section className="search-form">
       <div className="search-form__wrapper">
-        <form className="search-form__form" onSubmit={handleSubmit}>
+        <form className="search-form__form" onSubmit={handleSubmit} noValidate>
           <input
             className="search-form__input"
             type="search"

@@ -175,12 +175,13 @@ function App() {
     api
       .updateUser(name, email)
       .then((user) => {
-        setCurrentUser(user)
         setMessage('Данные профиля успешно обновлены.')
+
+        setCurrentUser(user)
       })
       .catch((err) => {
-        console.log(err)
         setMessage('Произошла ошибка, попробуйте перезагрузить страницу.')
+        console.log(err)
       })
       .finally(() => {
         setTimeout(() => setMessage(''), 1000)

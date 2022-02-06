@@ -49,10 +49,6 @@ function MoviesCardList({ movies, message, onSave, onDelete, savedMovies }) {
     }
   }, [resize])
 
-  // function checkSavedMovies(movie) {
-  //   return savedMovies.find((item) => item.id === movie.id)
-  // }
-
   React.useEffect(() => {
     const windowSize = window.innerWidth
     setAddCards(getCards(windowSize).extra)
