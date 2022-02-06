@@ -103,19 +103,6 @@ function App() {
     }
   }, [filteredMovies, loggedIn])
 
-  // React.useEffect(() => {
-  //   const token = localStorage.getItem('token')
-  //   api
-  //     .getMovies(token)
-  //     .then((res) => {
-  //       setSavedMovies(res)
-  //       localStorage.setItem('savedMovies', JSON.stringify(res))
-  //     })
-  //     .catch((err) => {
-  //       console.error(err)
-  //     })
-  // }, [])
-
   // Логин пользователя
   function handleLogin({ email, password }) {
     api

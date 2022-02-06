@@ -150,9 +150,9 @@
     display: none;
   }
 
-  .navigation__link_active {
+  /* .navigation__link_active {
     border-bottom: none;
-  }
+  } */
 
   .navigation__link:nth-of-type(3) {
     margin: 0;
