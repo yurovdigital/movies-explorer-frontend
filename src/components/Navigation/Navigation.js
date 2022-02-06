@@ -19,6 +19,7 @@ function Navigation({ isBurgerMenuOpen, toggleBurgerMenu }) {
         }`}
       >
         <NavLink
+          exact
           to="/"
           className="navigation__link"
           activeClassName="navigation__link_active"

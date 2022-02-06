@@ -1,6 +1,7 @@
 .login {
   background-color: #202020;
   height: 100vh;
+  width: 100%;
 }
 
 .login__wrapper {
@@ -100,6 +101,19 @@
   visibility: hidden;
 }
 
+.login__message {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  color: #ee3465;
+  margin: 50px auto 15px;
+}
+
 .login__input-error_active {
   visibility: visible;
 }
@@ -110,7 +124,7 @@
   border: none;
   width: 100%;
   height: 45px;
-  margin: 267px 0 0 0;
+  margin: 0;
   transition: opacity 0.2s ease-in-out;
   cursor: pointer;
   -webkit-font-smoothing: antialiased;
@@ -184,7 +198,7 @@
   .login__button {
     font-size: 14px;
     line-height: 17px;
-    margin: 179px 0 0 0;
+    margin: 0;
   }
 
   .login__text {

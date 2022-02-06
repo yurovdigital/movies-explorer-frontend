@@ -1,6 +1,7 @@
 .portfolio {
   background-color: #202020;
   padding: 70px 0 70px 0;
+  width: 100%;
 }
 
 .portfolio__wrapper {
