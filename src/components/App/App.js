@@ -162,11 +162,18 @@ function App() {
     localStorage.removeItem('token')
     localStorage.removeItem('loadedMovies')
     localStorage.removeItem('savedMovies')
+    localStorage.removeItem('checkBox')
+    localStorage.removeItem('searchKeyword')
+    localStorage.removeItem('filteredMovies')
     setAllMovies([])
     setMovies([])
     setSavedMovies([])
     setCurrentUser({})
+    setSearchKeyword('')
+    setFilteredMovies([])
     setLoggedIn(false)
+    setMessage('')
+
     history.push('/')
   }
 
