@@ -23,6 +23,7 @@ function Profile({ loggedIn, onUpdateUser, onSignOut, message }) {
   function handleFocus(evt) {
     evt.target.select()
   }
+  
 
   React.useEffect(() => {
     if (user) {

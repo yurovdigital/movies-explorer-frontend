@@ -19,3 +19,4 @@ function FilterCheckbox({ checkBoxClick, isShort }) {
 }
 
 export default FilterCheckbox
+
