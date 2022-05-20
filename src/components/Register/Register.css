@@ -187,7 +187,7 @@
   }
 
   .register__logo {
-    margin: 232px 0 40px 0;
+    margin: 70px 0 40px 0;
     align-self: flex-start;
   }
 
@@ -196,7 +196,7 @@
   }
 
   .register__message {
-    margin: 179px auto 15px;
+    margin: 15px auto 15px;
   }
 
   .register__button {
@@ -222,9 +222,5 @@
 @media screen and (min-width: 1280px) {
   .register_wrapper {
     max-width: 1280px;
-  }
-
-  .register__logo {
-    margin: 70px 0 40px 0;
   }
 }
