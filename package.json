@@ -17,7 +17,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "npm run build && scp -r ./build/* yurov@51.250.17.56:/home/yurov/frontend"
+    "deploy": "npm run build && scp -r ./build/* root@141.98.168.136:/root//movies-explorer/frontend"
   },
   "eslintConfig": {
     "extends": [
