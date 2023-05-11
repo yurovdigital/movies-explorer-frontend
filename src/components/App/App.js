@@ -12,6 +12,7 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext'
 import './App.css'
 
 // Components
+
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import Main from '../Main/Main'
 import Movies from '../Movies/Movies'
