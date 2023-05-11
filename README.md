@@ -1,8 +1,6 @@
 # Movies Explorer
 ##### Дипломный проект курса "Веб-разработчик" от Яндекс.Практикум
 ---
-##### Проект доступен по [ссылке](https://movies-yd.nomoredomains.rocks/)
----
 
 #### Технологии
 ![HTML5](https://img.shields.io/badge/-HTML5-141130?style=for-the-badge&logo=HTML5&logoColor=FF0000)
