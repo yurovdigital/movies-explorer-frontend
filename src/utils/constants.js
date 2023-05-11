@@ -1,7 +1,7 @@
 export const MOVIES_URL = 'https://api.nomoreparties.co'
 export const MOVIES_API = `${MOVIES_URL}/beatfilm-movies`
 
-export const MAIN_API = 'https://movies-explorer.yurovdigital.ru/api'
+export const MAIN_API = 'http://movies-explorer.yurovdigital.ru/api'
 
 export const SHORT_MOVIE_DURATION = 40
 
